@@ -7,6 +7,9 @@ import (
 	"html/template"
 	"io/ioutil"
 	"strings"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 const newMigrationFmt = `package all
@@ -17,7 +20,8 @@ var %s = &Migration{}
 // CreateNewMigration persists a new migration file in the appropriate location
 // and updates the appropriate all.go list of migrations
 func CreateNewMigration(existing []Spec, name string) error {
-	camelName := strings.Replace(strings.Title(name), " ", "", -1)
+	titleName := cases.Title(language.Und, cases.NoLower).String(name)
+	camelName := strings.Replace(titleName, " ", "", -1)
 
 	newMigrationNumber := len(existing) + 1
 
