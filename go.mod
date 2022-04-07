@@ -212,3 +212,5 @@ require (
 )
 
 replace github.com/nats-io/nats-streaming-server v0.11.2 => github.com/influxdata/nats-streaming-server v0.11.3-0.20201112040610-c277f7560803
+
+replace github.com/influxdata/flux => /Users/fons/flux
